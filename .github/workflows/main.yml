@@ -31,6 +31,10 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list devices
       
+    # Boot the simulator (in case it's shut down)
+    - name: Boot the simulator
+      run: xcrun simctl boot 0EBC0304-4883-45A4-9A43-4C9CC04F6066
+      
     - name: Run xcodebuild with tests
       run: xcodebuild -project dev.xcodeproj/ -scheme OmiseSDK -derivedDataPath Build/ -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.1' -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
